@@ -9,15 +9,15 @@ class Dogs
 {
 public:
 	Dogs();
-	int getDogPopulation();
-	int getCountryPopulation();
-	bool countryAvailable(string country); // may or may not needed
-	void setDogPopulation(int);
+    int getDogPopulation();
+    int getCountryPopulation(string country);
+    void setDogPopulation(int);
+    void setCountryPopulation(string country, int population);
 
 private:
 	int m_dogPopulation = 0;
+	unordered_map <string, int> m_countryPopulation;
 	unordered_map <string, int> m_dogs;
-	int m_countryPopulation = 0;
 };
 
 #endif

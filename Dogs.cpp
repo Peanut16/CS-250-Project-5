@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
@@ -24,7 +25,7 @@ int Dogs::getDogPopulation()
         std::string country = line.substr(0, commaPos);
         int dogCount = std::stoi(line.substr(commaPos + 1));
 
-        this->m_dogs[country] = dogCount;
+        m_dogs[country] = dogCount;
         m_dogPopulation += dogCount;
     }
 
@@ -32,7 +33,21 @@ int Dogs::getDogPopulation()
     return m_dogPopulation;
 }
 
-void Dogs::setDogPopulation(int dogPopulation) {
+int Dogs::getCountryPopulation(string country)
+{
+    if (m_countryPopulation.find(country) != m_countryPopulation.end()) {
+        return m_countryPopulation[country];
+    } else {
+        throw runtime_error("Country not found");
+    }
+}
+
+void Dogs::setDogPopulation(int dogPopulation)
+{
     m_dogPopulation = dogPopulation;
 }
 
+void Dogs::setCountryPopulation(string country, int population)
+{
+    m_countryPopulation[country] = population;
+}
